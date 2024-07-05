@@ -6,12 +6,17 @@ import {
   Typography,
 } from "@mui/material";
 import { rupiahConverter } from "../../../utils/rupiahConverter";
+import { Link } from "react-router-dom";
 
-const HotelCard = ({ item }) => {
+const HotelCard = ({ item, onSelectHotel }) => {
   return (
     <>
       <Card sx={{ maxWidth: 345, margin: 2 }}>
-        <CardActionArea>
+        <CardActionArea
+          component={Link}
+          to={`/booking/${item.id}`}
+          onClick={onSelectHotel}
+        >
           <CardMedia
             component="img"
             height="240"

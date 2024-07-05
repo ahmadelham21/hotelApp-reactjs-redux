@@ -8,6 +8,9 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { myRoute } from "../main";
+import { useLocation } from "react-router-dom";
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -15,6 +18,10 @@ const Navbar = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
+
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -27,11 +34,8 @@ const Navbar = () => {
       position="fixed"
       enableColorOnDark="true"
       elevation={0}
-      color={scrollPosition > 0 ? "secondary" : "transparent"}
-      //   sx={{
-      //     backgroundColor: scrollPosition > 0 ? "#F5F5F5" : "transparent",
-      //     transition: "background-color 0.3s ease-in-out",
-      //   }}
+      color={scrollPosition > 0 || !isHomePage ? "secondary" : "transparent"}
+
     >
       <Container maxWidth="xl">
         <Toolbar sx={{ color: "white" }}>
@@ -49,15 +53,19 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 2, display: "flex", justifyContent: "center" }}>
-            <Button color="inherit" sx={{ fontWeight: "bold" }}>
-              Home
-            </Button>
-            <Button color="inherit" sx={{ fontWeight: "bold" }}>
-              Booking
-            </Button>
-            <Button color="inherit" sx={{ fontWeight: "bold" }}>
-              Guest List
-            </Button>
+            {myRoute.map((route) => {
+              return (
+                <Button
+                  component={Link}
+                  key={route.name}
+                  to={route.path}
+                  color="inherit"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {route.name}
+                </Button>
+              );
+            })}
           </Box>
           <Button variant="outlined" color="inherit">
             <Box sx={{ display: "flex" }}>
