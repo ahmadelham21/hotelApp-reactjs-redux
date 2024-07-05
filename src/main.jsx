@@ -15,7 +15,7 @@ import Booking from "./pages/booking/Booking.jsx";
 export const myRoute = [
   {
     name: "home",
-    path: "/",
+    path: "/home",
     element: <Home />,
   },
 
@@ -28,18 +28,17 @@ export const myRoute = [
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: myRoute,
   },
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
   {
     path: "/booking/:id",
     element: <Booking />,
-  }
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

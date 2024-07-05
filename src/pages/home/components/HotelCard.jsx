@@ -1,4 +1,6 @@
 import {
+  Badge,
+  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -7,6 +9,7 @@ import {
 } from "@mui/material";
 import { rupiahConverter } from "../../../utils/rupiahConverter";
 import { Link } from "react-router-dom";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const HotelCard = ({ item, onSelectHotel }) => {
   return (
@@ -27,16 +30,26 @@ const HotelCard = ({ item, onSelectHotel }) => {
             <Typography variant="h6" component="div">
               {item.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {item.location}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ fontWeight: "bold" }}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                marginBottom: 2,
+              }}
             >
-              {rupiahConverter(item.price)}
-            </Typography>
+              <LocationOnIcon
+                fontSize="small"
+                sx={{ marginRight: 1, color: "grey" }}
+              />
+              <Typography variant="body2" sx={{ color: "grey" }}>
+                {item.location}
+              </Typography>
+            </Box>
+            <Badge
+              color="secondary"
+              badgeContent={rupiahConverter(item.price)}
+              sx={{ marginLeft: 6 }}
+            ></Badge>
           </CardContent>
         </CardActionArea>
       </Card>
