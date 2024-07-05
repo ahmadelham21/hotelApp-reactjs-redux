@@ -1,11 +1,12 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Login from "./pages/auth/Login";
+import Home from "./pages/home/Home";
 
 const App = () => {
   return (
     <>
-      <Login />
+      <Navbar />
+      <Home />
     </>
   );
 };
