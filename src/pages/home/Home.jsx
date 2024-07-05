@@ -1,7 +1,13 @@
+import Hero from "./components/Hero";
+import TopOffer from "./components/TopOffer";
+
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <Hero />
+      <TopOffer />
+    </>
+  );
+};
 
-export default Home
+export default Home;
